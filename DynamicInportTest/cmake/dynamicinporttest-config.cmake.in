@@ -1,0 +1,54 @@
+# DynamicInPortTest CMake config file
+#
+# This file sets the following variables:
+# DynamicInPortTest_FOUND - Always TRUE.
+# DynamicInPortTest_INCLUDE_DIRS - Directories containing the DynamicInPortTest include files.
+# DynamicInPortTest_IDL_DIRS - Directories containing the DynamicInPortTest IDL files.
+# DynamicInPortTest_LIBRARIES - Libraries needed to use DynamicInPortTest.
+# DynamicInPortTest_DEFINITIONS - Compiler flags for DynamicInPortTest.
+# DynamicInPortTest_VERSION - The version of DynamicInPortTest found.
+# DynamicInPortTest_VERSION_MAJOR - The major version of DynamicInPortTest found.
+# DynamicInPortTest_VERSION_MINOR - The minor version of DynamicInPortTest found.
+# DynamicInPortTest_VERSION_REVISION - The revision version of DynamicInPortTest found.
+# DynamicInPortTest_VERSION_CANDIDATE - The candidate version of DynamicInPortTest found.
+
+message(STATUS "Found DynamicInPortTest-@PROJECT_VERSION@")
+set(DynamicInPortTest_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(DynamicInPortTest_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(DynamicInPortTest_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(DynamicInPortTest_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(DynamicInPortTest_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(DynamicInPortTest_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(DynamicInPortTest_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(DynamicInPortTest_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(DynamicInPortTest_VERSION @PROJECT_VERSION@)
+set(DynamicInPortTest_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(DynamicInPortTest_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(DynamicInPortTest_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(DynamicInPortTest_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
