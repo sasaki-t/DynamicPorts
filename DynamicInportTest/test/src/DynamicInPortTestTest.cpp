@@ -1,25 +1,29 @@
 ﻿// -*- C++ -*-
+// <rtc-template block="description">
 /*!
  * @file  DynamicInPortTestTest.cpp
- * @brief DynamicInPort test component
- * @date $Date$
+ * @brief DynamicInPort test component (test code)
  *
  * @author 佐々木毅 (Takeshi SASAKI)
  * sasaki-t(_at_)ieee.org
  *
- * $Id$
  */
+// </rtc-template>
 
 #include "DynamicInPortTestTest.h"
 
 // Module specification
 // <rtc-template block="module_spec">
+#if RTM_MAJOR_VERSION >= 2
+static const char* const dynamicinporttest_spec[] =
+#else
 static const char* dynamicinporttest_spec[] =
+#endif
   {
     "implementation_id", "DynamicInPortTestTest",
     "type_name",         "DynamicInPortTestTest",
     "description",       "DynamicInPort test component",
-    "version",           "1.0.0",
+    "version",           "1.1.0",
     "vendor",            "TakeshiSasaki",
     "category",          "example",
     "activity_type",     "PERIODIC",
@@ -38,8 +42,8 @@ static const char* dynamicinporttest_spec[] =
 DynamicInPortTestTest::DynamicInPortTestTest(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
-    m_InPortManipIn("InPortManip", m_InPortManip),
-    m_StringDataIn("StringData", m_StringData)
+    m_InPortManipOut("InPortManip", m_InPortManip),
+    m_StringDataOut("StringData", m_StringData)
 
     // </rtc-template>
 {
@@ -85,25 +89,23 @@ RTC::ReturnCode_t DynamicInPortTestTest::onFinalize()
 }
 */
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onStartup(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onShutdown(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
+//RTC::ReturnCode_t DynamicInPortTestTest::onStartup(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
+
+
+//RTC::ReturnCode_t DynamicInPortTestTest::onShutdown(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
 
 /*!
  * 初期化を行う。
  */
 
-RTC::ReturnCode_t DynamicInPortTestTest::onActivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t DynamicInPortTestTest::onActivated(RTC::UniqueId /*ec_id*/)
 {
   return RTC::RTC_OK;
 }
@@ -112,7 +114,7 @@ RTC::ReturnCode_t DynamicInPortTestTest::onActivated(RTC::UniqueId ec_id)
  * 動的入力ポートを全て削除する。
  */
 
-RTC::ReturnCode_t DynamicInPortTestTest::onDeactivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t DynamicInPortTestTest::onDeactivated(RTC::UniqueId /*ec_id*/)
 {
   return RTC::RTC_OK;
 }
@@ -127,7 +129,7 @@ RTC::ReturnCode_t DynamicInPortTestTest::onDeactivated(RTC::UniqueId ec_id)
  * 号と文字列をコンソールに出力する。
  */
 
-RTC::ReturnCode_t DynamicInPortTestTest::onExecute(RTC::UniqueId ec_id)
+RTC::ReturnCode_t DynamicInPortTestTest::onExecute(RTC::UniqueId /*ec_id*/)
 {
   return RTC::RTC_OK;
 }
@@ -136,39 +138,40 @@ RTC::ReturnCode_t DynamicInPortTestTest::onExecute(RTC::UniqueId ec_id)
  * 動的入力ポートを全て削除する。
  */
 
-RTC::ReturnCode_t DynamicInPortTestTest::onAborting(RTC::UniqueId ec_id)
+RTC::ReturnCode_t DynamicInPortTestTest::onAborting(RTC::UniqueId /*ec_id*/)
 {
   return RTC::RTC_OK;
 }
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onError(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onReset(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
+//RTC::ReturnCode_t DynamicInPortTestTest::onError(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onStateUpdate(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
 
-/*
-RTC::ReturnCode_t DynamicInPortTestTest::onRateChanged(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
+//RTC::ReturnCode_t DynamicInPortTestTest::onReset(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
 
+
+//RTC::ReturnCode_t DynamicInPortTestTest::onStateUpdate(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
+
+
+//RTC::ReturnCode_t DynamicInPortTestTest::onRateChanged(RTC::UniqueId /*ec_id*/)
+//{
+//  return RTC::RTC_OK;
+//}
+
+
+bool DynamicInPortTestTest::runTest()
+{
+    return true;
+}
 
 
 extern "C"
@@ -182,6 +185,4 @@ extern "C"
                              RTC::Delete<DynamicInPortTestTest>);
   }
   
-};
-
-
+}
